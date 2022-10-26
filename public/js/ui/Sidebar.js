@@ -41,8 +41,10 @@ class Sidebar {
       App.getModal('login').open();
     }
     document.querySelector('.menu-item_logout').onclick = e => {
-      User.logout(JSON.parse(localStorage.user), (err, response) => {
-        if(response.success) App.setState('init');
+      User.logout((err, response) => {
+        if(response.success) {
+          App.setState('init');
+        }
       })
     }
   }

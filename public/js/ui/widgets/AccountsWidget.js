@@ -14,7 +14,9 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-    if (!element) throw new Error('Элемент не найден');
+    if (!element) {
+      throw new Error('Элемент не найден')
+    }
     this.element = element;
     this.registerEvents();
     this.update();
@@ -48,10 +50,12 @@ class AccountsWidget {
    * */
   update() {
     if (User.current()) {
-      Account.list(User.current(), (err, response) => {
-        if (response && response.data) {
+      Account.list(null, (err, response) => {
+        if (response && response.success) {
           this.clear();
-          this.renderItem(response.data);
+          response.data.forEach(item => {
+            this.renderItem(item);
+          })          
         }
       })
     }

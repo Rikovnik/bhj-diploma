@@ -5,6 +5,12 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
+    },
+    {
+      "name": "Fei Yuan",
+      "email": "ya@ya",
+      "password": "123",
+      "id": "41pye0y7y0l9pygiiw"
     }
   ],
   "accounts": [
@@ -22,6 +28,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "12331",
+      "user_id": "41pye0y7y0l9pygiiw",
+      "id": "41pye0y7y0l9pygn8o"
     }
   ],
   "transactions": [

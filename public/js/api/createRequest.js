@@ -19,24 +19,22 @@ const createRequest = (options = {}) => {
 		}
 	}
 
-	xhr.onreadystatechange = () => {
-		if (xhr.readyState === XMLHttpRequest.DONE) {
-			let err = null;
-			let resp = null;
+	xhr.onload = () => {
+        let err = null;
+        let response = null;
 
-			if (xhr.status === 200) {
-				const r = xhr.response;
-				if (r && r.success) {
-					resp = r;
-				} else {
-					err = r;
-				}
-			} else {
-				err = new Error('Ошибка');
-			}
-			options.callback(err, resp);
-		}
-	}
+        try {
+            if (xhr.response?.success) {
+                response = xhr.response;
+            } else {
+                err = xhr.response
+            }
+        } catch (e) {
+            err = e;
+        }
+
+        options.callback(err, response);
+    }
 
 	xhr.open(options.method, url);
 	xhr.send(formData);

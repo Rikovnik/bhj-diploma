@@ -13,7 +13,9 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-    if (!element) throw new Error('Форма не обнаружена');
+    if (!element) {
+      throw new Error('Форма не обнаружена')
+    };
     this.element = element;
     this.registerEvents();
   }

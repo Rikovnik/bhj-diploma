@@ -26,7 +26,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    return localStorage.user ? JSON.parse(localStorage.user) : undefined;
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   /**
@@ -97,10 +97,9 @@ class User {
     createRequest({
       url: this.URL + '/logout',
       method: 'POST',
-      data,
       callback: (err, response) => {
         if (response && response.success) {
-          this.unsetCurrent();
+          this.unsetCurrent(response.user);
         }
         callback(err, response);
       }

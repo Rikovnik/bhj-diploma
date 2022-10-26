@@ -11,7 +11,10 @@ class TransactionsPage {
    * через registerEvents()
    * */
   constructor( element ) {
-    if (!element) throw new Error('Эленент не найден');
+    if (!element) {
+      throw new Error('Эленент не найден')
+    };
+
     this.element = element;
     this.registerEvents();
   }
@@ -20,7 +23,9 @@ class TransactionsPage {
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    if (this.lastOptions) this.render(this.lastOptions);
+    if (this.lastOptions) {
+      this.render(this.lastOptions)
+    }
   }
 
   /**
@@ -53,10 +58,15 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-    if (!this.lastOptions) return;
+    if (!this.lastOptions) {
+      return
+    };
+
     if (confirm('Вы уверены, что  хотите удалить счёт?')) {
       Account.remove({ id: this.lastOptions.account_id }, (err, response) => {
-        if (response.success) App.updateWidgets();
+        if (response.success) {
+          App.updateWidgets()
+        }
       });
       this.clear();
     }
@@ -71,7 +81,9 @@ class TransactionsPage {
   removeTransaction(id) {
     if (confirm('Вы уверены, что хотите удалить эту транзакцию?')) {
       Transaction.remove(id, (err, response) => {
-        if (response.success) App.update();
+        if (response.success) {
+          App.update()
+        }
       });
     }
   }
@@ -83,7 +95,9 @@ class TransactionsPage {
    * в TransactionsPage.renderTransactions()
    * */
   render(options){
-    if (!options) return;
+    if (!options) {
+      return
+    }
     this.lastOptions = options;
     Account.get(options.account_id, (err, response) => {
       if (response.success) {
