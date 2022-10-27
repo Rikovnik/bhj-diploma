@@ -20,22 +20,22 @@ const createRequest = (options = {}) => {
 	}
 
 	xhr.onload = () => {
-        let err = null;
-        let response = null;
+    let err = null;
+    let response = null;
 
-        try {
-            if (xhr.response?.success) {
-                response = xhr.response;
-            } else {
-                err = xhr.response
-            }
-        } catch (e) {
-            err = e;
-        }
+    if (xhr.response?.success) {
+      response = xhr.response;
+    } else {
+      err = xhr.response
+    };
+    
+    options.callback(err, response);
+  }
 
-        options.callback(err, response);
-    }
-
-	xhr.open(options.method, url);
-	xhr.send(formData);
+	try {
+    xhr.open(options.method, url);
+	  xhr.send(formData);
+  } catch(e) {
+    err = e;
+  }
 };
